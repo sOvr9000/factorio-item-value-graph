@@ -636,8 +636,16 @@ function buildUsedInHtml(itemName, planet) {
 }
 
 function navigateToItem(itemName) {
-    const targetRow = document.querySelector(`tr.item-row[data-item="${itemName}"]`);
-    if (!targetRow) return;
+    let targetRow = document.querySelector(`tr.item-row[data-item="${itemName}"]`);
+    if (!targetRow) {
+        const searchInput = document.getElementById('search-input');
+        if (searchInput.value) {
+            searchInput.value = '';
+            renderTable();
+            targetRow = document.querySelector(`tr.item-row[data-item="${itemName}"]`);
+        }
+        if (!targetRow) return;
+    }
 
     const existing = document.querySelector('.detail-row');
     if (existing) existing.remove();
