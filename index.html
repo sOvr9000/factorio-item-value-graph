@@ -656,6 +656,7 @@ function navigateToItem(itemName) {
     targetRow.classList.remove('highlighted');
     void targetRow.offsetWidth;
     targetRow.classList.add('highlighted');
+    targetRow.addEventListener('animationend', () => targetRow.classList.remove('highlighted'), { once: true });
     targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
