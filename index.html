@@ -216,7 +216,7 @@ body {
 
 .detail-items {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 3px;
 }
 
@@ -231,6 +231,7 @@ body {
     cursor: pointer;
     transition: all 0.15s;
     font-size: 11px;
+    width: fit-content;
 }
 .detail-item:hover {
     background: #333;
@@ -538,7 +539,8 @@ function buildPlanetDetailHtml(itemName, pd, planet) {
         html += '<div class="raw-label">Raw resource</div>';
     } else if (source.type === 'recipe') {
         const recipe = recipes[source.recipe_name];
-        html += '<div class="recipe-name-label">' + formatName(source.recipe_name) + '</div>';
+        html += '<div class="detail-section-label">Recipe</div>' +
+            '<div class="recipe-name-label">' + formatName(source.recipe_name) + '</div>';
 
         if (recipe && recipe.ingredients) {
             html += '<div class="detail-section">' +
